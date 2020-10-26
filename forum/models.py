@@ -10,20 +10,16 @@ def create_user(username, email, password):
     users[email] = user
 
 
-def create_post(poster, contents):
+def create_post(poster, contents, thread_name):
+    thread = threads[thread_name]
     post = {"poster": poster, "content": contents}
     # todo: post["date"] = getDate()
-    return post
+    thread.append(post)
 
 
 def create_thread(thread_name, first_post):
     posts = [first_post]
     threads[thread_name] = posts
-
-
-def add_reply(thread_name, post):
-    thread = threads[thread_name]
-    thread.append(post)
 
 
 def validate(email, password):

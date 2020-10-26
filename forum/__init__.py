@@ -10,7 +10,7 @@ def validate(email, password):
     return None
 
 
-def create_post(poster, contents):
+def create_post(poster, contents, thread_name):
     return None
 
 
@@ -27,8 +27,4 @@ def get_thread(thread_name):
 
 
 def has_thread(thread_name):
-    return None
-
-
-def add_reply(thread_name, post):
     return None
