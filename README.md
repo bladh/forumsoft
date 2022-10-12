@@ -12,12 +12,16 @@ code.
 
 ## todo
 
-[ ] Database (sqlite)
+- [ ] Database (sqlite)
 
-[ ] Admin panel for deleting threads
+- [ ] Admin panel for deleting threads
 
-[ ] Admin panel for managing users
+- [ ] Admin panel for managing users
 
-[ ] Letting users edit their posts
+- [ ] Letting users edit their posts
 
-[ ] Private messaging page
+- [ ] Private messaging page
+
+- [ ] Divide threads into pages
+
+- [ ] Simple CSS
