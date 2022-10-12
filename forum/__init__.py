@@ -30,6 +30,13 @@ def validate(email, password):
     return users[email]["password"] == password
 
 
+def get_username(email):
+    if email not in users.keys():
+        print("No such email registered")
+        return None
+    return users[email]["username"]
+
+
 def get_threads():
     return threads
 

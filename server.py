@@ -59,8 +59,11 @@ def view_thread(thread_name):
         password = request.form['pwd']
         if not forum.validate(email, password):
             return "Invalid user!"
+        username = forum.get_username(email)
+        if not username:
+            return "Invalid user!"
         post_contents = request.form['post']
-        forum.create_post(email, post_contents, thread_name)
+        forum.create_post(username, post_contents, thread_name)
         return render_template("thread.html", title=thread_name, posts=forum.get_thread(thread_name))
 
 
