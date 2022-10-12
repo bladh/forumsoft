@@ -1,30 +1,50 @@
-def get_threads():
-    return None
+threads = {}
+users = {}
 
 
 def create_user(username, email, password):
-    return None
-
-
-def validate(email, password):
-    return None
+    print("Registering user")
+    if email in users.keys():
+        print(email + " has already been registered")
+        return
+    user = {"username": username, "email": email, "password": password}
+    print("Registering " + email + ": " + password)
+    users[email] = user
 
 
 def create_post(poster, contents, thread_name):
-    return None
+    thread = threads[thread_name]
+    post = {"poster": poster, "content": contents}
+    # todo: post["date"] = getDate()
+    thread.append(post)
 
 
-def get_user(email):
-    return None
+def create_thread(thread_name):
+    threads[thread_name] = []
 
 
-def create_thread(thread_name, post):
-    return None
+def validate(email, password):
+    if email not in users.keys():
+        print("No such email registered")
+        return False
+    return users[email]["password"] == password
+
+
+def get_threads():
+    return threads
 
 
 def get_thread(thread_name):
-    return None
+    return threads[thread_name]
 
 
 def has_thread(thread_name):
-    return None
+    return thread_name in threads.keys()
+
+
+def get_users():
+    return users
+
+
+def get_user(email):
+    return users[email]

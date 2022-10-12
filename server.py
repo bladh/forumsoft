@@ -11,7 +11,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html", threads=forum.get_threads().keys())
+    threads = forum.get_threads()
+    if threads:
+        return render_template("index.html", threads=threads.keys())
+    else:
+        return render_template("index.html", threads=[])
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -24,6 +28,7 @@ def register():
         if not request.form['jockesboll']:
             return "<p>We don't serve your kind here!</p>"
         forum.create_user(request.form['name'], request.form['email'], request.form['pwd'])
+        print("Creating user " + request.form['name'])
         return render_template("welcome.html", username=request.form['name'])
 
 
@@ -38,8 +43,8 @@ def make_thread():
             return "Invalid user!"
         thread_name = request.form['threadname']
         post_contents = request.form['firstpost']
-        post = forum.create_post(forum.get_user(email)['username'], post_contents)
-        forum.create_thread(thread_name, post)
+        forum.create_thread(thread_name)
+        post = forum.create_post(forum.get_user(email)['username'], post_contents, thread_name)
         return render_template("thread.html", title=thread_name, posts=forum.get_thread(thread_name))
 
 
@@ -60,4 +65,4 @@ def view_thread(thread_name):
 
 
 if __name__ == "__main__":
-    app.run(ssl_context='adhoc')
+    app.run(ssl_context='adhoc', host="139.162.114.215")
